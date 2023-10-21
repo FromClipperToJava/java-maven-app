@@ -5,10 +5,12 @@ pipeline {
             steps {
                 echo 'budowanie'
             }
+        }
         stage("test") {
             steps {
                 echo 'testowanie' 
             }
+        }
         stage("deploy") {
             steps {
                 echo 'wdrożenie'
