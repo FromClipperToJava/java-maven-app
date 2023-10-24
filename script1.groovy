@@ -8,7 +8,7 @@ def testApp() {
 
 def deployApp() {
   echo 'wdrożenie apki'
-  echo "wersja ${VERSION}"
+  echo "wersja ${params.VERSION}"
 }
 
 return this
