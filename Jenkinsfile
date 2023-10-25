@@ -35,9 +35,18 @@ pipeline {
             }
         }
         stage("deploy") {
+            input {
+                message "wybierz środowisko do wdrożenia"
+                ok "zrobione"
+                parameters {
+                    choice(name: 'ENV', choices: ['DEV', 'UAT', 'PREPROD', 'PROD'], description: 'abcdef')
+                    
+                }
+            }
             steps {
                 script {
                     gv.deployApp()
+                    echo "wdrażam na ${ENV}"
                 }
             }
         }
