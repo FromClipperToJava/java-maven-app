@@ -1,19 +1,18 @@
 def buildJar() {
-    echo "building the application..."
+    echo "building my application"
     sh 'mvn package'
 } 
 
 def buildImage() {
-    echo "building the docker image..."
+    echo "building my docker image 2.1"
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push nanajanashia/demo-app:jma-2.0'
-    }
+    sh 'docker build -t fromclippertojava/my-repo:jma-2.1 .'
+    sh "echo $PASS | docker login -u $USER --password-stdin"
+    sh 'docker push fromclippertojava/my-repo:jma-2.1'    }
 } 
 
 def deployApp() {
-    echo 'deploying the application...'
+    echo "deploying my application 2.1"
 } 
 
 return this
