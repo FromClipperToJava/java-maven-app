@@ -35,19 +35,12 @@ pipeline {
             }
         }
         stage("deploy") {
-            input {
-                message "wybierz środowisko do wdrożenia"
-                ok "zrobione"
-                parameters {
-                    choice(name: 'ENV1', choices: ['DEV', 'UAT', 'PREPROD', 'PROD'], description: 'opis1')
-                    choice(name: 'ENV2', choices: ['DEV', 'UAT', 'PREPROD', 'PROD'], description: 'opis2')
-                }
-            }
             steps {
                 script {
+                    env.ENV = input message: "wybierz środowisko", ok: "oki", parameters: [choice(name: 'ENV0', choices: ['DEV', 'UAT', 'PREPROD'], description: 'opis0')]
+                    
                     gv.deployApp()
-                    echo "wdrażam na ${ENV1}"
-                    echo "wdrażam na ${ENV2}"
+                    echo "wdrażam na ${ENV}"
                 }
             }
         }
